@@ -2,17 +2,20 @@ version: "2.1"
 
 services:
   mongo:
+    container_name: gaw-mongo
     image: mongo:3.2.4
     ports:
     - 27017:27017
     command: --smallfiles
     
   mongo-init:
+    container_name: gaw-mongo-init
     build: ./mongo-init
     links:
       - mongo
       
   mongo-client:
+    container_name: gaw-mongo-client
     image: mongoclient/mongoclient
     ports:
     - 3030:3000
@@ -22,6 +25,7 @@ services:
       - mongo
 
   go-agile-web:
+    container_name: gaw-app
     #image: go-agile-web/app.goagile.web
     build: .
     ports:
@@ -29,6 +33,3 @@ services:
     links:
     - mongo
     entrypoint: "java -Djava.security.egd=file:/dev/./urandom -jar /app.jar"
-    
-    
-
