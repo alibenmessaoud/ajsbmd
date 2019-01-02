@@ -21,7 +21,7 @@ services:
     links:
       - mongo
 
-  spring-boot-mongo-docker:
+  go-agile-web:
     #image: go-agile-web/app.goagile.web
     build: .
     ports:

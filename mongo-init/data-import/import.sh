@@ -8,8 +8,8 @@ do
    echo "Reading folder ${folder}"
    ls -1 ${folder}/*.json | sed 's/.json$//' | while read col; do 
         filename=${col#$folder}
-        echo "Read folder ${folder#initpattern} and file .${filename}.json" 
-	mongoimport --host mongo --db ${folder#initpattern} --collection ${filename#$folderpattern} --type json --file ${col}.json --jsonArray
+        echo "---- mongo-init:job = Read folder ${folder#initpattern} and file .${filename}.json"
+	    mongoimport --host mongo --db ${folder#initpattern} --collection ${filename#$folderpattern} --type json --file ${col}.json --jsonArray
    done
 done
 
